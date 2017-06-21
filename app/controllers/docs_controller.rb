@@ -6,7 +6,8 @@ class DocsController < ApplicationController
 	end
 
 	def create
-		@doc = Doc.new(doc_params)
+		#puts "#kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk {current_user}"
+		@doc = current_user.docs.build(doc_params)
 
 		if @doc.save
 			redirect_to @doc
@@ -16,7 +17,7 @@ class DocsController < ApplicationController
 	end
 
 	def new
-		@doc = Doc.new
+		@doc = current_user.docs.build
 	end
 
 	def edit
